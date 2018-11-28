@@ -36,12 +36,18 @@ function replaceAllSelect2(){
 
     for (i = 0; i < elements.length; i++) {
 
+        // don't use select2
+        if (elements[i].multiple  // multiple select
+            || elements[i].classList.contains('value')  // query filter values
+            || elements[i].name == 'block' // my page customizer
+        ) {continue;}
+
         // For not woroking 「width:resolve」
         if(elements[i].id == 'year'
         || elements[i].id == 'month'
         || elements[i].id == 'columns'
         || elements[i].id == 'settings_issuequery_query_id'
-        || elements[i].id == 'block-select'){
+        || elements[i].id == 'add_filter_select'){
 
             $("#" + elements[i].id).select2({
                 width:"175px",
